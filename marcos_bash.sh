@@ -48,6 +48,56 @@ function get_weather {
   fi
 }
 
+function branchy() {
+
+  if [ -z "$1"]; then
+    echo -e "${BLUE} \n Usage: brancy <branch-name>${RESET}"
+    return 1
+  fi
+
+  git checkout -b "$1"
+  git push --set-upstream origin "$1"
+
+  echo -e "${MAGENTA}\n Switched to new branch: $1 and set upstream to origin/$1 ${RESET}"
+}
+
+function del_branch() {
+  if [ -z "$1" ]; then
+    echo -e "${BLUE} \n Usage: del_branch <branch-name> <local | remote | both> ${RESET}"
+    return 1
+  fi
+
+  branch_name="$1"
+  delete_option="$2" 
+
+  case "$delete_option" in
+    local)
+      git branch -d "$branch_name"
+      echo -e "${YELLOW} \n Deleted local branch: $branch_name ${RESET}"
+      ;;
+    remote)
+      git push origin --delete "$branch_name"
+      echo -e "${YELLOW} \n Deleted remote brach: origin/$branch_name ${RESET}"
+      ;;
+    both)
+      git branch -d "$branch_name"
+      git push origin --delete "$branch_name"
+      echo -e "${YELLOW} \n Deleted branch $branch_name on both local and remote ${RESET}"
+      ;;
+    *)
+      echo -e "${RED}"
+      echo "Invalid option: $delete_option. You must input local, remote, or both"
+      echo "Usage: del_branch <branch-name> <local|remote|both>"
+      echo -e ${RESET}
+      return 1
+      ;;
+  esac
+
+}
+
 # ALIAS
 alias gw='get_weather'
 alias gs='git status'
+alias gcd="git checkout main"
+alias gpod='git checout origin main'
+alias gb='git branch'

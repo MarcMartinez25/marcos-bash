@@ -26,10 +26,27 @@ DEVELOPER="Ricky Bobby" # whatever name you want to commands to call you
 ### Available Commands
 
 ``` bash
+
+# Usage: brancy <branch-name>
+# Creates a new branch and sets up the upstream
+branchy
+
+# Usage: del_branch <branch-name> <local|remote|both>
+# Deletes the branch user inputted either locally, remotely, or both
+del_branch
+
+# Usage: gets weather based on location
+gw
+
 # runs 'git status'
 gs
 
-# gets weather based on location
-gw
+# runs 'git checkout main'
+gcd
 
+#runs 'git pull origin main'
+gpod
+
+# runs 'git branch
+gb
 ```
