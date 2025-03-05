@@ -1,5 +1,8 @@
 #!/bin/bash
 
+#source the config file
+source ./config.env
+
 #COLORS
 GREEN='\e[32m';
 CYAN='\e[36m';
@@ -23,24 +26,18 @@ echo -e "${RESET}"
 echo ""
 echo -e "${MAGENTA} __________________________________________________________________________________________________________________ ${RESET}"
 echo ""
-echo -e "${RED} Hello Marco. Today is" `date`
+echo -e "${RED} Hello $DEVELOPER. Today is" `date`
 echo -e "${RESET}"
 
 # FUNCTIONS
 function get_weather {
-  local api_key="enter-your-api-key-here"
-  local lat="35.4757866"
-  local lon="-97.5297775"
-  local url="https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${api_key}"
+  local url="https://api.openweathermap.org/data/2.5/weather?lat=$LAT&lon=$LON&appid=$OPEN_WEATHER_API"
 
   response=$(curl -s "$url")
-
   weather_overview=$(echo "$response" | jq -r '.weather[0].description')
   weather_overview=$(echo "$weather_overview" | sed -E 's/\..*//')
-
   temps=$(echo "$response" | jq -r '.main.temp')
   winds=$(echo "$response" | jq -r '.wind.speed')
-
 
   echo "Todays Weather: ${weather_overview} with temps around ${temp} and winds of ${winds}"
 }
