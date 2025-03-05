@@ -30,7 +30,7 @@ echo -e "${MAGENTA} Hello $DEVELOPER. Today is" `date`
 echo -e "${RESET}"
 
 # FUNCTIONS
-function get_weather {
+function weather {
   local url="https://api.openweathermap.org/data/2.5/weather?zip=$ZIPCODE,us&appid=$OPEN_WEATHER_API"
 
   response=$(curl -s "$url")
@@ -96,7 +96,6 @@ function del_branch() {
 }
 
 # ALIAS
-alias gw='get_weather'
 alias gs='git status'
 alias gcd="git checkout main"
 alias gpod='git checout origin main'

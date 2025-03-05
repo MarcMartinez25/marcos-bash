@@ -36,7 +36,7 @@ branchy
 del_branch
 
 # Usage: gets weather based on location
-gw
+weather
 
 # runs 'git status'
 gs
