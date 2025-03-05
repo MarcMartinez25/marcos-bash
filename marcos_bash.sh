@@ -26,7 +26,7 @@ echo ""
 echo -e "${RED} Hello Marco. Today is" `date`
 echo -e "${RESET}"
 
-
+# FUNCTIONS
 function get_weather {
   local api_key="enter-your-api-key-here"
   local lat="35.4757866"
@@ -45,4 +45,6 @@ function get_weather {
   echo "Todays Weather: ${weather_overview} with temps around ${temp} and winds of ${winds}"
 }
 
+# ALIAS
 alias gw='get_weather'
+alias gs='git status'
