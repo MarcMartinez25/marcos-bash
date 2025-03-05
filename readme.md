@@ -4,31 +4,26 @@ this is still a work in progress and I will be adding new commands that will hel
 
 ## Setup and Config
 
-to use these commands you will need to add the `marcos_bash.sh` file to `.bashrc` like so:
+- to use these commands you will need to add the `marcos_bash.sh` file to `.bashrc` like so:
 
 ```bash
 
 source "{path-to-file}\marcos_bash.sh"
 
 ```
+(feel free to rename the file to whatever you want)
 
-feel free to rename the file to whatever you want.
+ - you will also need to create a `config.env` file to store your api keys and any other variable that will be created in the future. This file will be stored in the root directory of this project.
 
-you will also need to create a `config.env` file to store your api keys and any other variable that will be created in the future. This file will be stored in the root directory of this project.
+### Config Variables
 
-So far the variables you need to create are:
-- OPEN_WEATHER_API
-  - you will get this from openweathermap.org
-  - ex: 'd52e7cced285fd3435634'
-- LAT
-  - latititude for api call
-- LON
-  - longitude for api call
-- DEVELOPER
-  - this will be your name!
-  - ex: "Marco"
+```bash
+OPEN_WEATHER_API="{YOU-API-KEY}" # you will get this from openweathermap.org
+ZIP="90210" # Zipcode is used for getting the weather based on your desired location
+DEVELOPER="Ricky Bobby" # whatever name you want to commands to call you
+```
 
-## Available Commands
+### Available Commands
 
 ``` bash
 # runs 'git status'

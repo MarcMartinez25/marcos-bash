@@ -31,7 +31,7 @@ echo -e "${RESET}"
 
 # FUNCTIONS
 function get_weather {
-  local url="https://api.openweathermap.org/data/2.5/weather?lat=$LAT&lon=$LON&appid=$OPEN_WEATHER_API"
+  local url="https://api.openweathermap.org/data/2.5/weather?zip=$ZIPCODE,us&appid=$OPEN_WEATHER_API"
 
   response=$(curl -s "$url")
 
