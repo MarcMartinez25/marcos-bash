@@ -21,12 +21,12 @@ echo -e "${GREEN}         +:+        +:+    +:+ +:+        +:+            +:+   
 echo -e "${CYAN}        :#:        +#++:++#:  +#++:++#   +#++:++#       +#+         +#+     +#+ +:+ +#+ :#:        +#++:++#++   ${RESET}"
 echo -e "${BLUE}       +#+   +#+# +#+    +#+ +#+        +#+            +#+         +#+     +#+  +#+#+# +#+   +#+#        +#+    ${RESET}"
 echo -e "${BLUE}      #+#    #+# #+#    #+# #+#        #+#            #+#         #+#     #+#   #+#+# #+#    #+# #+#    #+#     ${RESET}"
-echo -e "${MAGENTA}     ########  ###    ### ########## ##########     ###     ########### ###    ####  ########   ########       ${RESET}"
+echo -e "${MAGENTA}      ########  ###    ### ########## ##########     ###     ########### ###    ####  ########   ########       ${RESET}"
 echo -e "${RESET}"
 echo ""
 echo -e "${MAGENTA} __________________________________________________________________________________________________________________ ${RESET}"
 echo ""
-echo -e "${RED} Hello $DEVELOPER. Today is" `date`
+echo -e "${MAGENTA} Hello $DEVELOPER. Today is" `date`
 echo -e "${RESET}"
 
 # FUNCTIONS
@@ -34,12 +34,18 @@ function get_weather {
   local url="https://api.openweathermap.org/data/2.5/weather?lat=$LAT&lon=$LON&appid=$OPEN_WEATHER_API"
 
   response=$(curl -s "$url")
-  weather_overview=$(echo "$response" | jq -r '.weather[0].description')
-  weather_overview=$(echo "$weather_overview" | sed -E 's/\..*//')
-  temps=$(echo "$response" | jq -r '.main.temp')
-  winds=$(echo "$response" | jq -r '.wind.speed')
 
-  echo "Todays Weather: ${weather_overview} with temps around ${temp} and winds of ${winds}"
+  if [[ -n "$response" ]]; then
+    weather_overview=$(echo "$response" | jq -r '.weather[0].description')
+    weather_overview=$(echo "$weather_overview" | sed -E 's/\..*//')
+    temps=$(echo "$response" | jq -r '.main.temp')
+    temp=$(echo "scale=2; ((($temps - 273.15) * 9) / 5) + 32" | bc)
+    winds=$(echo "$response" | jq -r '.wind.speed')
+
+    echo "Todays Weather: ${weather_overview} with temps around ${temp} and winds of ${winds}"
+  else
+    echo "Currently unable to get weather :("
+  fi
 }
 
 # ALIAS
