@@ -120,5 +120,5 @@ function ct() {
 # ALIAS
 alias gs='git status'
 alias gcd="git checkout main"
-alias gpod='git checout origin main'
+alias gpod='git checkout origin main'
 alias gb='git branch'
