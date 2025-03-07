@@ -96,14 +96,16 @@ function ct() {
  
   case "$1" in
     dev)
-      cd "$(cygpath -u "$CIPS_DIR")" || return 1
-      echo -ne "\033]0;CIPS\007"
-      echo -e "${YELLOW} Switched to CIPS repo ${RESET}"
+      cd "$(cygpath -u "$DEV_DIR")" || return 1
+      export PROMPT_COMMAND='echo -ne "\033]0;CIPS\007"'
+      # echo -ne "\033]0;CIPS\007"
+      echo -e "${YELLOW}\n Switched to $DEV_DIR_NAME repo ${RESET}"
       ;;
     bash)
-      cd $BASH_DIR || return 1
-      echo -ne "\033]0;BASH\007"
-      echo -e "${YELLOW} Switched to bash repo ${RESET}"
+      cd "$(cygpath -u "$BASH_DIR")" || return 1
+      export PROMPT_COMMAND='echo -ne "\033]0;CIPS\007"'
+      # echo -ne "\033]0;BASH\007"
+      echo -e "${YELLOW}\n Switched to bash repo ${RESET}"
       ;;
     *)
       echo -e "${BLUE} \n Usage: ct <dev | bash> ${RESET}"
