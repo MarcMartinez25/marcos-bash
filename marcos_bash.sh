@@ -107,8 +107,20 @@ function ct() {
       # echo -ne "\033]0;BASH\007"
       echo -e "${YELLOW}\n Switched to bash repo ${RESET}"
       ;;
+    react)
+      cd "$(cygpath -u "$REACT_DIR")" || return 1
+      export PROMPT_COMMAND='echo -ne "\033]0;CIPS\007"'
+      # echo -ne "\033]0;BASH\007"
+      echo -e "${YELLOW}\n Switched to react repo ${RESET}"
+      ;;
+    ui)
+      cd "$(cygpath -u "$UIKIT_DIR")" || return 1
+      export PROMPT_COMMAND='echo -ne "\033]0;CIPS\007"'
+      # echo -ne "\033]0;BASH\007"
+      echo -e "${YELLOW}\n Switched to uikit repo ${RESET}"
+      ;;
     *)
-      echo -e "${BLUE} \n Usage: ct <dev | bash> ${RESET}"
+      echo -e "${BLUE} \n Usage: ct <dev | bash | react | ui> ${RESET}"
       echo -e "${BLUE} \n This will take you to the directory you set up in your config ${RESET}"
       return 1
       ;;
@@ -122,3 +134,4 @@ alias gs='git status'
 alias gcd="git checkout main"
 alias gpod='git checkout origin main'
 alias gb='git branch'
+alias rg='npx gulp build'
