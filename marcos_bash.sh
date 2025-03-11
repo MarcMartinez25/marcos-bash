@@ -125,8 +125,28 @@ function ct() {
       return 1
       ;;
   esac
+}
 
+function clean_push() {
+  case $1 in
+    --help)
+      echo -e "${BLUE} \n Usage: clean_push ${RESET}"
+      echo -e "${BLUE} \n This will run the formatter and push changes ${RESET}"
+      return 1
+      ;;
+    -h)
+      echo -e "${BLUE} \n Usage: clean_push ${RESET}"
+      echo -e "${BLUE} \n This will run the formatter and push changes ${RESET}"
+      return 1
+      ;;
+    *)
+      #dotnet 
+      #git push
 
+      echo -e "${MAGENTA}\n Files have been formatted and changes have been pushed ${RESET}"
+      return 1
+      ;;
+  esac
 }
 
 # ALIAS
@@ -135,3 +155,4 @@ alias gcd="git checkout main"
 alias gpod='git checkout origin main'
 alias gb='git branch'
 alias rg='npx gulp build'
+# alias clean='dotnet '
