@@ -3,10 +3,10 @@
 #COLORS
 GREEN='\e[32m';
 CYAN='\e[36m';
-RED='\e[31m';
-YELLOW='\e[33m';
-BLUE='\e[34m';
-MAGENTA='\e[35m';
+RED='\e[31m'; # ERROR
+YELLOW='\e[33m'; # WARNING
+BLUE='\e[34m'; # INFO
+MAGENTA='\e[35m'; # SUCCESS
 RESET='\e[0m';
 
 # GREETING
@@ -147,6 +147,42 @@ function clean_push() {
       return 1
       ;;
   esac
+}
+
+function squash() {
+  if [ -z "$1" ]; then
+    echo -e "${BLUE} \n Usage: squash <number-of-commits> ${RESET}"
+    return 1
+  fi
+
+  # run sed to modify pick/squash commands
+  echo -e "${YELLOW}\n Starting interactive rebase for the last $1 commits... ${RESET}"
+  GIT_SEQUENCE_EDITOR="sed -i '2,\$s/^pick/squash/'" git rebase -i HEAD~$1
+
+  if [ $? -eq 0 ]; then
+
+    # ask user if they want to see the git log
+    echo -e "${MAGENTA}\n Rebase successful! Do you want to view the updated git log? (y/n):  ${RESET}"
+    read -r log_choice
+    if [[ "$log_choice" =~ ^[Yy]$ ]]; then
+      git log --oneline --graph --decorate -n 10
+    else
+      echo -e "${MAGENTA}\n Done! ${RESET}"
+    fi
+
+    # ask user if they want to force push
+    echo -e "${MAGENTA}\n Do you want to force push your changes? (y/n):  ${RESET}"
+    read -r push_choice
+
+    if [[ "$push_choice" =~ ^[Yy]$ ]]; then
+      git push --force
+    else
+      echo -e "${MAGENTA}\n Force push skipped. ${RESET}"
+    fi
+  else
+    echo -e "${RED}\n Rebase failed. Resolve conflicts and run 'git rebase --continue'. ${RESET}"
+  fi
+  
 }
 
 # ALIAS
