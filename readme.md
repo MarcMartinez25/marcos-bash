@@ -34,6 +34,9 @@ BASH_DIR="path-to-this-repo" # this is the path to this repo.
 
 ``` bash
 
+# Usage: gets weather based on location
+weather
+
 # Usage: brancy <branch-name>
 # Creates a new branch and sets up the upstream
 branchy
@@ -43,11 +46,12 @@ branchy
 del_branch
 
 # Usage: ct <dev | bash>
-#T his will take you to the directory you set up in your config and rename the title of the tab
+# This will take you to the directory you set up in your config and rename the title of the tab
 ct
 
-# Usage: gets weather based on location
-weather
+# Usage: squash <number-of-commits>
+# This will allow you to squash the last n commits, view the git log and force push your changes.
+squash
 
 # runs 'git status'
 gs
