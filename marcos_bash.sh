@@ -117,7 +117,7 @@ function ct() {
       # echo -ne "\033]0;BASH\007"
       echo -e "${YELLOW}\n Switched to uikit repo ${RESET}"
       ;;
-    ui)
+    e2e)
       cd "$(cygpath -u "$E2E_DIR")" || return 1
       export PROMPT_COMMAND='echo -ne "\033]0;CIPS\007"'
       # echo -ne "\033]0;BASH\007"
