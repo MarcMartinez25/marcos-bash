@@ -28,6 +28,9 @@ DEVELOPER="Ricky Bobby" # whatever name you want to commands to call you
 DEV_DIR="path-to-development-dir" # this can be whatever path you want.
 DEV_DIR_NAME="development" # this is what you want to name your dev_dir
 BASH_DIR="path-to-this-repo" # this is the path to this repo.
+REACT_DIR="path-to-this-repo"
+UIKIT_DIR="path-to-this-repo"
+E2E_DIR="path-to-this-repo"
 ```
 
 ### Available Commands
