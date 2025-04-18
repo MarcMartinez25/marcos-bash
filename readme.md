@@ -45,13 +45,18 @@ branchy
 # Deletes the branch user inputted either locally, remotely, or both
 del_branch
 
-# Usage: ct <dev | bash>
+# Usage: ct <dev | bash | react | ui | e2e>
 # This will take you to the directory you set up in your config and rename the title of the tab
 ct
 
 # Usage: squash <number-of-commits>
 # This will allow you to squash the last n commits, view the git log and force push your changes.
 squash
+
+```
+### Aliases
+
+```bash
 
 # runs 'git status'
 gs
@@ -64,4 +69,5 @@ gpod
 
 # runs 'git branch
 gb
+
 ```

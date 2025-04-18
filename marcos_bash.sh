@@ -46,7 +46,6 @@ function weather {
 }
 
 function branchy() {
-
   if [ -z "$1" ]; then
     echo -e "${BLUE} \n Usage: brancy <branch-name>${RESET}"
     return 1
@@ -93,7 +92,6 @@ function del_branch() {
 }
 
 function ct() {
- 
   case "$1" in
     dev)
       cd "$(cygpath -u "$DEV_DIR")" || return 1
@@ -119,8 +117,14 @@ function ct() {
       # echo -ne "\033]0;BASH\007"
       echo -e "${YELLOW}\n Switched to uikit repo ${RESET}"
       ;;
+    ui)
+      cd "$(cygpath -u "$E2E_DIR")" || return 1
+      export PROMPT_COMMAND='echo -ne "\033]0;CIPS\007"'
+      # echo -ne "\033]0;BASH\007"
+      echo -e "${YELLOW}\n Switched to e2e repo ${RESET}"
+      ;;
     *)
-      echo -e "${BLUE} \n Usage: ct <dev | bash | react | ui> ${RESET}"
+      echo -e "${BLUE} \n Usage: ct <dev | bash | react | ui | e2e> ${RESET}"
       echo -e "${BLUE} \n This will take you to the directory you set up in your config ${RESET}"
       return 1
       ;;
