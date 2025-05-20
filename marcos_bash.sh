@@ -195,4 +195,5 @@ alias gcd="git checkout main"
 alias gpod='git checkout origin main'
 alias gb='git branch'
 alias rg='npx gulp build'
+alias commit_count='git rev-list --count origin/main..HEAD'
 # alias clean='dotnet '
