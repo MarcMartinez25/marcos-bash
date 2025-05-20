@@ -73,4 +73,7 @@ gpod
 # runs 'git branch
 gb
 
+# gets the number of commits for the current branch
+commit_count
+
 ```
